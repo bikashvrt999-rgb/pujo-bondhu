@@ -392,7 +392,8 @@
       const data = await res.json();
       if (data.error) {
         console.error(data.error, data.detail);
-        return "উফ, এখন একটু শুনতে সমস্যা হচ্ছে। আবার বলো তো।";
+        // অস্থায়ী ডিবাগ মেসেজ — কাজ করলে এই লাইনটা সরিয়ে আগেরটা ফেরত আনবে
+        return "⚠️ Error: " + data.error + " — " + (data.detail || "").slice(0, 200);
       }
       conversationHistory.push({ role: "user", content: userText });
       conversationHistory.push({ role: "assistant", content: data.reply });
